@@ -14,17 +14,23 @@ unless rubygems_path.directory?
   rubygems_path = Pathname.new("tmp/rubygems").expand_path
   unless rubygems_path.directory?
     rubygems_path.parent.mkpath unless rubygems_path.directory?
-    run("git", "clone", "https://github.com/rubygems/rubygems.git", rubygems_path.to_s)
-  end
-  Dir.chdir(rubygems_path) do
-    run("git remote update")
-    version = "v#{version}" if version =~ /\A\d/
-    run("git", "checkout", version, "--quiet")
+    run("git", "clone", "--recursive", "https://github.com/rubygems/rubygems.git", rubygems_path.to_s)
   end
 end
 
-rubygems_lib = rubygems_path + "lib"
-ENV["RUBYOPT"] = %(-I#{rubygems_lib} #{ENV["RUBYOPT"]})
+Dir.chdir(rubygems_path) do
+  run("git remote update")
+  version = "v#{version}" if version =~ /\A\d/
+  run("git", "checkout", version, "--quiet")
+  run("git", "submodule", "update", "--init", "--recursive")
+
+  if ENV["CI"]
+    run("ruby", "setup.rb")
+  else
+    rubygems_lib = rubygems_path + "lib"
+    ENV["RUBYOPT"] = %(-I#{rubygems_lib} #{ENV["RUBYOPT"]})
+  end
+end
 
 if $0 != __FILE__
   ARGV.unshift($0)
