@@ -11,7 +11,13 @@ module Bundler
       spec
     end
 
-    attr_accessor :stub, :ignored
+    def initialize(*)
+      @_remote_specification = nil
+      super
+    end
+
+    attr_accessor :ignored
+    attr_writer :stub
 
     # Pre 2.2.0 did not include extension_dir
     # https://github.com/rubygems/rubygems/commit/9485ca2d101b82a946d6f327f4bdcdea6d4946ea
@@ -83,14 +89,21 @@ module Bundler
       stub.raw_require_paths
     end
 
+    def stub
+      if !@_remote_specification && @stub.instance_variable_get(:@data) && Gem.loaded_specs[name].equal?(self)
+        _remote_specification
+      end
+      @stub
+    end
+
   private
 
     def _remote_specification
       @_remote_specification ||= begin
-        rs = stub.to_spec
+        rs = @stub.to_spec
         if rs.equal?(self) # happens when to_spec gets the spec from Gem.loaded_specs
-          rs = Gem::Specification.load(loaded_from)
-          Bundler.rubygems.stub_set_spec(stub, rs)
+          rs = Gem::Specification.load(@stub.loaded_from)
+          Bundler.rubygems.stub_set_spec(@stub, rs)
         end
 
         unless rs
