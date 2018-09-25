@@ -243,7 +243,8 @@ module Bundler
     end
 
     def find_gemfile(order_matters = false)
-      given = ENV["BUNDLE_GEMFILE"]
+      require "bundler"
+      given = Bundler.settings[:gemfile]
       return given if given && !given.empty?
       names = gemfile_names
       names.reverse! if order_matters && Bundler.feature_flag.prefer_gems_rb?
