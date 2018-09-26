@@ -389,7 +389,7 @@ EOF
       # install binstubs there instead. Unfortunately, RubyGems doesn't expose
       # that directory at all, so rather than parse .gemrc ourselves, we allow
       # the directory to be set as well, via `bundle config set bindir foo`.
-      Bundler.settings[:system_bindir] || Bundler.rubygems.gem_bindir
+      settings[:system_bindir] || Bundler.rubygems.gem_bindir
     end
 
     def use_system_gems?
