@@ -25,6 +25,15 @@ module Bundler
     end
     private_class_method :settings_method
 
+    def self.env_flag(name, &default)
+      define_method(:"#{name}?") do
+        value = ENV["BUNDLE_#{name.to_s.upcase}"]
+        value = instance_eval(&default) if value.nil?
+        value
+      end
+    end
+    private_class_method :env_flag
+
     (1..10).each {|v| define_method("bundler_#{v}_mode?") { major_version >= v } }
 
     settings_flag(:allow_bundler_dependency_conflicts) { bundler_2_mode? }
@@ -58,6 +67,8 @@ module Bundler
     settings_option(:default_cli_command) { bundler_2_mode? ? :cli_help : :install }
 
     settings_method(:github_https?, "github.https") { bundler_2_mode? }
+
+    env_flag(:config_relative_to_cwd) { bundler_2_mode? }
 
     def initialize(bundler_version)
       @bundler_version = Gem::Version.create(bundler_version)

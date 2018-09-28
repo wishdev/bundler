@@ -244,7 +244,11 @@ module Bundler
 
     def find_gemfile(order_matters = false)
       require "bundler"
-      given = Bundler.settings[:gemfile]
+      given = if Bundler.feature_flag.config_relative_to_cwd?
+        Bundler.settings[:gemfile]
+      else
+        ENV["BUNDLE_GEMFILE"]
+      end
       return given if given && !given.empty?
       names = gemfile_names
       names.reverse! if order_matters && Bundler.feature_flag.prefer_gems_rb?
