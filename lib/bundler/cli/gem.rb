@@ -127,8 +127,8 @@ module Bundler
       if ask_and_set(:rubocop, "Do you want to add rubocop as a dependency for gems you generate?",
         "RuboCop is a static code analyzer that has out-of-the-box rules for many " \
         "of the guidelines in the community style guide. " \
-        "For more information, see the RuboCop docs (https://rubocop.readthedocs.io/en/latest/) " \
-        "and the Ruby Style Guides (https://github.com/bbatsov/ruby-style-guide).")
+        "For more information, see the RuboCop docs (http://www.rubocop.org/en/latest/) " \
+        "and the Ruby Style Guides (https://github.com/rubocop-hq/ruby-style-guide).")
         config[:rubocop] = true
         Bundler.ui.info "RuboCop enabled in config"
       end
