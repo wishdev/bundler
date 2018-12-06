@@ -227,9 +227,6 @@ RSpec.describe "The library itself" do
           gem_command! :build, gemspec
         end
 
-        # there's no way around this warning
-        last_command.stderr.sub!(/^YAML safe loading.*/, "")
-
         expect(last_command.stderr).to be_empty, "bundler should build as a gem without warnings, but\n#{err}"
       ensure
         # clean up the .gem generated
