@@ -11,6 +11,7 @@ branches:
     - master
     - staging
     - trying
+    - remove_gem_build_warning_exception
     - /.+-dev$/
     - /.+-stable$/
 
