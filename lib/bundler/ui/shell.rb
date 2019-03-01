@@ -10,11 +10,12 @@ module Bundler
       attr_writer :shell
 
       def initialize(options = {})
-        if options["no-color"] || !$stdout.tty?
-          Thor::Base.shell = Thor::Shell::Basic
-        else
-          Thor::Base.shell = Thor::Shell::Color
-        end
+        Thor::Base.shell =
+          if options["no-color"] || !$stdout.tty?
+            Thor::Shell::Basic
+          else
+            Thor::Shell::Color
+          end
         @shell = Thor::Base.shell.new
         @level = ENV["DEBUG"] ? "debug" : "info"
         @warning_history = []
