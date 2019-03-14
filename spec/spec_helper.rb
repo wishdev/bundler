@@ -23,7 +23,7 @@ rescue LoadError
   abort "Run rake spec:deps to install development dependencies"
 end
 
-require "bundler/psyched_yaml"
+require "yaml"
 require "bundler/vendored_fileutils"
 require "uri"
 require "digest"
