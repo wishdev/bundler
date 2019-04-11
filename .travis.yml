@@ -13,6 +13,7 @@ branches:
     - trying
     - /.+-dev$/
     - /.+-stable$/
+    - ruby_engine_always_defined
 
 cache:
   directories:
