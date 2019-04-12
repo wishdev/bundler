@@ -62,7 +62,7 @@ The version of Ruby that your application requires. If your application
 requires an alternate Ruby engine, such as JRuby, Rubinius or TruffleRuby, this
 should be the Ruby version that the engine is compatible with.
 
-    ruby "1.9.3"
+    ruby "2.6.2"
 
 ### ENGINE
 
@@ -91,7 +91,7 @@ Each application _may_ specify a Ruby engine version. If an engine version is
 specified, an engine _must_ also be specified. If the engine is "ruby" the
 engine version specified _must_ match the Ruby version.
 
-    ruby "1.8.7", :engine => "jruby", :engine_version => "1.6.7"
+    ruby "2.5.3", :engine => "jruby", :engine_version => "9.2.6.0"
 
 ### PATCHLEVEL
 
@@ -216,19 +216,19 @@ used on platforms with Ruby 2.3, use:
 The full list of platforms and supported versions includes:
 
   * `ruby`:
-    1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6
+    2.3, 2.4, 2.5, 2.6
   * `mri`:
-    1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6
+    2.3, 2.4, 2.5, 2.6
   * `mingw`:
-    1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6
+    2.3, 2.4, 2.5, 2.6
   * `x64_mingw`:
-    2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6
+    2.3, 2.4, 2.5, 2.6
 
 As with groups, you can specify one or more platforms:
 
-    gem "weakling",   :platforms => :jruby
-    gem "ruby-debug", :platforms => :mri_18
-    gem "nokogiri",   :platforms => [:mri_18, :jruby]
+    gem "weakling", :platforms => :jruby
+    gem "byebug",   :platforms => :mri
+    gem "nokogiri", :platforms => [:mri, :jruby]
 
 All operations involving groups ([`bundle install`](bundle-install.1.html), `Bundler.setup`,
 `Bundler.require`) behave exactly the same as if any groups not
