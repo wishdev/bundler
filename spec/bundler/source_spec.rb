@@ -57,7 +57,10 @@ RSpec.describe Bundler::Source do
           let(:locked_gem) { double(:locked_gem, :name => "nokogiri", :version => "< 1.5") }
 
           context "with color" do
-            before { Bundler.ui = Bundler::UI::Shell.new }
+            before do
+              allow($stdout).to receive(:tty?).and_return(true)
+              Bundler.ui = Bundler::UI::Shell.new
+            end
 
             it "should return a string with the spec name and version and locked spec version" do
               expect(subject.version_message(spec)).to eq("nokogiri >= 1.6\e[32m (was < 1.5)\e[0m")
@@ -65,6 +68,11 @@ RSpec.describe Bundler::Source do
           end
 
           context "without color" do
+            before do
+              allow($stdout).to receive(:tty?).and_return(false)
+              Bundler.ui = Bundler::UI::Shell.new
+            end
+
             it "should return a string with the spec name and version and locked spec version" do
               expect(subject.version_message(spec)).to eq("nokogiri >= 1.6 (was < 1.5)")
             end
