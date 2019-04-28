@@ -11,7 +11,7 @@ module Bundler
 
       def initialize(options = {})
         Thor::Base.shell =
-          if options["no-color"] || !$stdout.tty?
+          if options["no-color"]
             Thor::Shell::Basic
           else
             Thor::Shell::Color
