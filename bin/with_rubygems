@@ -4,6 +4,7 @@
 require "pathname"
 
 def run(*cmd)
+  puts "Running `#{cmd.join(" ")}`" if ENV["CI"]
   return if system(*cmd, :out => IO::NULL)
   raise "Running `#{cmd.join(" ")}` failed"
 end
