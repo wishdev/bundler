@@ -15,7 +15,7 @@ RSpec.describe "bundle install" do
       end
 
       install_gemfile <<-G
-        source "file:\/\/localhost#{gem_repo2}"
+        source "file://#{gem_repo2}"
         gem "rails"
       G
       expect(err).to end_with(<<-M.strip)
@@ -41,7 +41,7 @@ In Gemfile:
         end
 
         install_gemfile <<-G
-          source "file:\/\/localhost#{gem_repo1}"
+          source "file://#{gem_repo1}"
           gem "rails"
           gem "activesupport", :git => "#{lib_path("activesupport")}"
         G
@@ -69,7 +69,7 @@ In Gemfile:
         end
 
         install_gemfile <<-G
-          source "file:\/\/localhost#{gem_repo1}"
+          source "file://#{gem_repo1}"
           gem "rails"
 
           git "#{lib_path("activesupport")}" do
@@ -106,8 +106,8 @@ In Gemfile:
       end
 
       install_gemfile <<-G
-        source "file:\/\/localhost#{gem_repo4}"
-        source "file:\/\/localhost#{gem_repo2}" do
+        source "file://#{gem_repo4}"
+        source "file://#{gem_repo2}" do
           gem "rails"
         end
       G

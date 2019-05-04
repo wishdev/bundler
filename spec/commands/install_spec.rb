@@ -398,7 +398,7 @@ RSpec.describe "bundle install with gem sources" do
       end
 
       install_gemfile <<-G, :full_index => true
-        source "file:\/\/localhost#{gem_repo2}"
+        source "file://#{gem_repo2}"
 
         gem "ajp-rails", "0.0.0"
       G
