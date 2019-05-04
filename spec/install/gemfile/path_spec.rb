@@ -502,7 +502,7 @@ RSpec.describe "bundle install with explicit source paths" do
               rack (= 0.9.1)
 
         GEM
-          remote: file://#{gem_repo1}
+          remote: file://#{gem_repo1}/
           specs:
             rack (0.9.1)
 
@@ -530,7 +530,7 @@ RSpec.describe "bundle install with explicit source paths" do
               rack
 
         GEM
-          remote: file://#{gem_repo1}
+          remote: file://#{gem_repo1}/
           specs:
             rack (0.9.1)
 
