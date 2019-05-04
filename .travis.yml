@@ -13,6 +13,7 @@ branches:
     - trying
     - /.+-dev$/
     - /.+-stable$/
+    - remove_localhost_file_uris
 
 cache:
   directories:
