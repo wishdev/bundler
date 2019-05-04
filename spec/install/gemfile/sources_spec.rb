@@ -31,7 +31,7 @@ RSpec.describe "bundle install with gems on multiple sources" do
         bundle :install
 
         expect(err).to include("Warning: the gem 'rack' was found in multiple sources.")
-        expect(err).to include(normalize_uri_file("Installed from: file://#{gem_repo1}"))
+        expect(err).to include("Installed from: file://#{gem_repo1}")
         expect(the_bundle).to include_gems("rack-obama 1.0.0", "rack 1.0.0", :source => "remote1")
       end
 
@@ -58,7 +58,7 @@ RSpec.describe "bundle install with gems on multiple sources" do
 
       it "warns about ambiguous gems, but installs anyway", :bundler => "2" do
         expect(err).to include("Warning: the gem 'rack' was found in multiple sources.")
-        expect(err).to include(normalize_uri_file("Installed from: file://#{gem_repo1}"))
+        expect(err).to include("Installed from: file://#{gem_repo1}")
         expect(the_bundle).to include_gems("rack-obama 1.0.0", "rack 1.0.0", :source => "remote1")
       end
 
@@ -251,7 +251,7 @@ RSpec.describe "bundle install with gems on multiple sources" do
 
           it "installs from the other source and warns about ambiguous gems", :bundler => "2" do
             expect(err).to include("Warning: the gem 'rack' was found in multiple sources.")
-            expect(err).to include(normalize_uri_file("Installed from: file://#{gem_repo2}"))
+            expect(err).to include("Installed from: file://#{gem_repo2}")
             expect(the_bundle).to include_gems("depends_on_rack 1.0.1", "rack 1.0.0")
           end
 
@@ -674,7 +674,7 @@ RSpec.describe "bundle install with gems on multiple sources" do
         gem "depends_on_rack"
       G
       expect(last_command).to be_failure
-      expect(err).to eq normalize_uri_file(strip_whitespace(<<-EOS).strip)
+      expect(err).to eq strip_whitespace(<<-EOS).strip
         The gem 'rack' was found in multiple relevant sources.
           * rubygems repository file://#{gem_repo1}/ or installed locally
           * rubygems repository file://#{gem_repo4}/ or installed locally
