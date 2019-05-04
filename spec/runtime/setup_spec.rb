@@ -1131,7 +1131,7 @@ end
     def lock_with(ruby_version = nil)
       lock = <<-L
         GEM
-          remote: file://localhost#{gem_repo1}/
+          remote: file://#{gem_repo1}/
           specs:
             rack (1.0.0)
 
@@ -1158,7 +1158,7 @@ end
     before do
       install_gemfile <<-G
         ruby ">= 0"
-        source "file://localhost#{gem_repo1}"
+        source "file://#{gem_repo1}"
         gem "rack"
       G
       lockfile lock_with(ruby_version)

@@ -290,12 +290,7 @@ module Spec
     end
 
     def normalize_uri_file(str)
-      # URI::File of Ruby 2.6 normalize localhost variable with file protocol.
-      if defined?(URI::File)
-        str.gsub(%r{file:\/\/localhost}, "file://")
-      else
-        str
-      end
+      str
     end
 
     def install_gemfile(*args)

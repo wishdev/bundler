@@ -302,8 +302,8 @@ RSpec.describe "major deprecations" do
   context "bundle install with multiple sources" do
     before do
       install_gemfile <<-G
-        source "file://localhost#{gem_repo3}"
-        source "file://localhost#{gem_repo1}"
+        source "file://#{gem_repo3}"
+        source "file://#{gem_repo1}"
       G
     end
 

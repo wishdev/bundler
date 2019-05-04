@@ -20,7 +20,7 @@ RSpec.describe "bundle install" do
       G
       expect(err).to end_with(normalize_uri_file(<<-M.strip))
 An error occurred while installing activesupport (2.3.2), and Bundler cannot continue.
-Make sure that `gem install activesupport -v '2.3.2' --source 'file://localhost#{gem_repo2}/'` succeeds before bundling.
+Make sure that `gem install activesupport -v '2.3.2' --source 'file://#{gem_repo2}/'` succeeds before bundling.
 
 In Gemfile:
   rails was resolved to 2.3.2, which depends on
@@ -113,7 +113,7 @@ In Gemfile:
       G
       expect(err).to end_with(normalize_uri_file(<<-M.strip))
 An error occurred while installing activesupport (2.3.2), and Bundler cannot continue.
-Make sure that `gem install activesupport -v '2.3.2' --source 'file://localhost#{gem_repo2}/'` succeeds before bundling.
+Make sure that `gem install activesupport -v '2.3.2' --source 'file://#{gem_repo2}/'` succeeds before bundling.
 
 In Gemfile:
   rails was resolved to 2.3.2, which depends on

@@ -38,7 +38,7 @@ RSpec.describe Bundler::Definition do
       build_lib "foo", "1.0", :path => lib_path("foo")
 
       install_gemfile <<-G
-        source "file://localhost#{gem_repo1}"
+        source "file://#{gem_repo1}"
         gem "foo", :path => "#{lib_path("foo")}"
       G
 
@@ -57,7 +57,7 @@ RSpec.describe Bundler::Definition do
               rack (= 1.0)
 
         GEM
-          remote: file://localhost#{gem_repo1}/
+          remote: file://#{gem_repo1}/
           specs:
             rack (1.0.0)
 
@@ -76,7 +76,7 @@ RSpec.describe Bundler::Definition do
       build_lib "foo", "1.0", :path => lib_path("foo")
 
       install_gemfile <<-G
-        source "file://localhost#{gem_repo1}"
+        source "file://#{gem_repo1}"
         gem "foo", :path => "#{lib_path("foo")}"
       G
 
@@ -95,7 +95,7 @@ RSpec.describe Bundler::Definition do
               rack (= 1.0)
 
         GEM
-          remote: file://localhost#{gem_repo1}/
+          remote: file://#{gem_repo1}/
           specs:
             rack (1.0.0)
 
@@ -117,7 +117,7 @@ RSpec.describe Bundler::Definition do
       end
 
       install_gemfile <<-G
-        source "file://localhost#{gem_repo1}"
+        source "file://#{gem_repo1}"
         gem "foo", :path => "#{lib_path("foo")}"
       G
 
@@ -132,7 +132,7 @@ RSpec.describe Bundler::Definition do
               rack (= 1.0)
 
         GEM
-          remote: file://localhost#{gem_repo1}/
+          remote: file://#{gem_repo1}/
           specs:
             rack (1.0.0)
 
@@ -149,7 +149,7 @@ RSpec.describe Bundler::Definition do
 
     it "for a rubygems gem" do
       install_gemfile <<-G
-        source "file://localhost#{gem_repo1}"
+        source "file://#{gem_repo1}"
         gem "foo"
       G
 
@@ -158,7 +158,7 @@ RSpec.describe Bundler::Definition do
       expect(out).to match(/using resolution from the lockfile/)
       lockfile_should_be <<-G
         GEM
-          remote: file://localhost#{gem_repo1}/
+          remote: file://#{gem_repo1}/
           specs:
             foo (1.0)
 

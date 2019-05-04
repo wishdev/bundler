@@ -440,7 +440,7 @@ RSpec.describe "bundle install from an existing gemspec" do
         %w[ruby jruby].each do |platform|
           simulate_platform(platform) do
             install_gemfile <<-G
-              source "file://localhost#{gem_repo2}"
+              source "file://#{gem_repo2}"
               gemspec
             G
           end
@@ -464,7 +464,7 @@ RSpec.describe "bundle install from an existing gemspec" do
                     platform_specific
 
               GEM
-                remote: file://localhost#{gem_repo2}/
+                remote: file://#{gem_repo2}/
                 specs:
                   platform_specific (1.0)
                   platform_specific (1.0-java)
@@ -494,7 +494,7 @@ RSpec.describe "bundle install from an existing gemspec" do
                   foo (1.0)
 
               GEM
-                remote: file://localhost#{gem_repo2}/
+                remote: file://#{gem_repo2}/
                 specs:
                   platform_specific (1.0)
                   platform_specific (1.0-java)
@@ -526,7 +526,7 @@ RSpec.describe "bundle install from an existing gemspec" do
                   foo (1.0)
 
               GEM
-                remote: file://localhost#{gem_repo2}/
+                remote: file://#{gem_repo2}/
                 specs:
                   indirect_platform_specific (1.0)
                     platform_specific
