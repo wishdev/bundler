@@ -7,7 +7,7 @@ module URI
   module GenericExtension
     def to_s
       old_to_s = super
-      return old_to_s unless old_to_s =~ %r{^file:/}
+      return old_to_s unless old_to_s =~ %r{^file:/[^/]}
       old_to_s.insert(5, "//")
     end
   end
