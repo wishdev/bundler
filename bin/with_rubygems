@@ -5,8 +5,12 @@ require "pathname"
 
 def run(*cmd)
   puts "Running `#{cmd.join(" ")}`" if ENV["CI"]
-  return if system(*cmd, :out => IO::NULL)
-  raise "Running `#{cmd.join(" ")}` failed"
+  IO.popen(cmd) do |io|
+    io.each do |line|
+      puts line
+    end
+  end
+  raise "Running `#{cmd.join(" ")}` failed" unless $?.success?
 end
 
 version = ENV.delete("RGV")
@@ -19,7 +23,7 @@ unless rubygems_path.directory?
 end
 
 Dir.chdir(rubygems_path) do
-  run("git remote update")
+  run("git", "remote", "update")
   version = "v#{version}" if version =~ /\A\d/
   run("git", "checkout", version, "--quiet")
   run("git", "submodule", "update", "--init", "--recursive")
