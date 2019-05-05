@@ -3,18 +3,6 @@
 require "uri"
 require "rubygems/user_interaction"
 
-module URI
-  module GenericExtension
-    def to_s
-      old_to_s = super
-      return old_to_s unless old_to_s =~ %r{^file:/[^/]}
-      old_to_s.insert(5, "//")
-    end
-  end
-
-  Generic.prepend(GenericExtension)
-end if RUBY_VERSION < "2.5"
-
 module Bundler
   class Source
     class Rubygems < Source
