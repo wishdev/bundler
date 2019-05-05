@@ -86,7 +86,7 @@ RSpec.describe "bundle add" do
     it "adds dependency with specified source" do
       bundle "add 'foo' --source='#{file_uri_for(gem_repo2)}'"
 
-      expect(bundled_app("Gemfile").read).to match(%r{gem "foo", "~> 2.0", :source => "#{file_uri_for(gem_repo2)}"})
+      expect(bundled_app("Gemfile").read).to match(/gem "foo", "~> 2.0", :source => "#{file_uri_for(gem_repo2)}"/)
       expect(the_bundle).to include_gems "foo 2.0"
     end
   end
