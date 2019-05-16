@@ -13,6 +13,7 @@ branches:
     - trying
     - /.+-dev$/
     - /.+-stable$/
+    - try_revert_old_patch
 
 cache:
   directories:
