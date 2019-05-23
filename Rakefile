@@ -71,6 +71,9 @@ namespace :spec do
       # Install the gems with a consistent version of RubyGems
       sh "gem update --system 3.0.3"
 
+      # Remove rvm specific stuff that breaks things
+      sh "gem uninstall executable-hooks -x --force -i #{`gem env home`.strip}@global"
+
       # Install the other gem deps, etc
       Rake::Task["spec:deps"].invoke
     end
